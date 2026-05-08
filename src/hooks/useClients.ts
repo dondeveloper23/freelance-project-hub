@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { createClient } from "@/lib/supabase/client"
 
 export type Client = {
-  id: string;
+  id: number;
   name: string;
   created_at: string;
 };
@@ -28,7 +28,7 @@ export const useClients = () => {
     fetchClients();
   }, [setClients]);
 
-  const handleDelete = async (clientId: string) => {
+  const handleDelete = async (clientId: number) => {
     const { data: clientData, error: clientError } = await supabase
       .from("clients")
       .delete()
