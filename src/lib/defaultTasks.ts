@@ -1,0 +1,17 @@
+export const tasks = [
+  { phase: "figma", title: "Moodboard" },
+  { phase: "figma", title: "Style Guide" },
+  { phase: "figma", title: "Typography & Colors" },
+  { phase: "figma", title: "Component Library" },
+  { phase: "figma", title: "Final Prototype" },
+  { phase: "webflow", title: "Create Project, Add Fonts, Colors and Assets" },
+  { phase: "webflow", title: "Create Static Sections" },
+  { phase: "webflow", title: "Fill out CMS" },
+  { phase: "webflow", title: "Add Interactions" },
+  { phase: "webflow", title: "Connect Buttons" },
+  { phase: "seo", title: "Check Heading Order" },
+  { phase: "seo", title: "Add Alt Text" },
+  { phase: "seo", title: "Add Meta Title and Description" },
+  { phase: "seo", title: "Add JSON-Schema" },
+  { phase: "seo", title: "Submit to Google Search Console" },
+]
