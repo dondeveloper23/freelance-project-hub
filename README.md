@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Freelance Project Hub A full-stack SaaS application for freelancers to manage projects, clients, and notes — all in one place.
 
-## Getting Started
+🚀 Live Demo: Coming soon
 
-First, run the development server:
+Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Authentication — Secure sign up / login with Supabase Auth, protected routes via Next.js middleware Client Management — Add, view, and delete clients Project Management — Create projects linked to clients, with an auto-generated task pipeline (15 tasks across Figma, Webflow, and SEO phases) Task Progress Tracking — Step-by-step task completion with a visual progress bar per project Notes — Create notes linked to clients or projects Responsive UI — Mobile-friendly layout with hamburger navigation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tech Stack LayerTechnologyFrameworkNext.js 14 (App Router)LanguageTypeScriptStylingTailwind CSSBackend & DatabaseSupabase (PostgreSQL)AuthenticationSupabase AuthState ManagementZustandSecurityRow Level Security (RLS) on all tables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Architecture src/ ├── app/ # Next.js App Router pages │ ├── login/ │ ├── register/ │ ├── projects/[id]/ │ ├── clients/ │ └── notes/ ├── components/ # Reusable UI components ├── hooks/ # Custom hooks (useClients, useProjects, useTasks, useNotes) ├── store/ # Zustand stores (ui, clients, projects, notes, tasks) └── lib/ └── supabase/ # Supabase client, server, and middleware config
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Database Schema
 
-## Learn More
+profiles — Linked to Supabase auth users, stores username clients — Belongs to a user, stores client name projects — Belongs to a user and a client tasks — Belongs to a project, auto-generated on project creation (15 tasks) notes — Belongs to a user, optionally linked to a client or project
 
-To learn more about Next.js, take a look at the following resources:
+All tables have Row Level Security (RLS) enabled — users can only access their own data.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Getting Started Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Node.js 18+ A Supabase project
 
-## Deploy on Vercel
+Installation bashgit clone https://github.com/dondeveloper23/freelance-project-hub.git cd freelance-project-hub npm install Environment Variables Create a .env.local file in the root: envNEXT_PUBLIC_SUPABASE_URL=your_supabase_url NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key Run Locally bashnpm run dev Open http://localhost:3000
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Roadmap
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TanStack Query integration Project image upload (Supabase Storage) Deploy on Vercel
+
+Author Built by Don — open to frontend / fullstack roles.
