@@ -34,6 +34,11 @@ const Register = () => {
     const { data: authData, error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
+      options: {
+        data: {
+          username: data.username,
+        },
+      },
     });
 
     if (error) {
@@ -43,13 +48,9 @@ const Register = () => {
     }
     if (!authData.user) return;
 
-    const { error: profileError } = await supabase
-      .from("profiles")
-      .insert({ id: authData.user.id, username: data.username });
-
-    if (profileError) console.error(profileError.message);
-
-    setSuccessMessage("Registeration successful! You received a confirmation email.");
+    setSuccessMessage(
+      "Registeration successful! You received a confirmation email.",
+    );
     setIsLoading(false);
   };
   return (
