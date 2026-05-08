@@ -20,6 +20,7 @@ const Register = () => {
   } = useForm<FormData>();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const onSubmit = async (data: FormData) => {
     if (data.password !== data.confirmPassword) {
@@ -46,9 +47,10 @@ const Register = () => {
       .from("profiles")
       .insert({ id: authData.user.id, username: data.username });
 
-    if (profileError) console.error(profileError.message)
+    if (profileError) console.error(profileError.message);
 
-    router.push("/login");
+    setSuccessMessage("Registeration successful! You received a confirmation email.");
+    setIsLoading(false);
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0D0E12]">
@@ -138,6 +140,11 @@ const Register = () => {
               </p>
             )}
           </div>
+          {successMessage && (
+            <p className="text-green-500 text-sm text-center">
+              {successMessage}
+            </p>
+          )}
           <button
             className="w-full bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-semibold py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
