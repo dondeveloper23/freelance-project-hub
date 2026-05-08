@@ -4,6 +4,7 @@ interface Project {
   title: string;
   client_id: number;
   created_at: string;
+  image_url: string | null;
 }
 
 interface ProjectsStore {

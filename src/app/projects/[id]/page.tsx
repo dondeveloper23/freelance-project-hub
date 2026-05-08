@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useProjects } from "@/hooks/useProjects";
 import { useClients } from "@/hooks/useClients";
 import { useTasks } from "@/hooks/useTasks";
+import Image from "next/image";
 
 const ProjectPage = () => {
   const { projects } = useProjects();
@@ -26,6 +27,16 @@ const ProjectPage = () => {
   return (
     <div className="mt-10">
       <h1 className="text-white text-3xl font-bold mb-4">{project.title}</h1>
+      {project.image_url && (
+        <div className="relative w-full max-w-md h-64 mt-4">
+          <Image
+            src={project.image_url}
+            alt={project.title}
+            fill
+            className="rounded-xl object-cover"
+          />
+        </div>
+      )}
       <p className="text-gray-500 text-sm mt-2">
         {clients.find((c) => c.id === project.client_id)?.name}
       </p>

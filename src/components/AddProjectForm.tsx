@@ -15,6 +15,7 @@ const AddProjectForm = () => {
   const { clients } = useClientsStore();
   const { addProject } = useProjectsStore();
   const supabase = createClient();
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,12 +28,34 @@ const AddProjectForm = () => {
       data: { user },
     } = await supabase.auth.getUser();
 
+    let imageUrl = null;
+
+    if (imageFile) {
+      const fileExt = imageFile.name.split(".").pop();
+      const filePath = `${user?.id}/${Date.now()}.${fileExt}`;
+      const { error: uploadError } = await supabase.storage
+        .from("project-images")
+        .upload(filePath, imageFile);
+
+      if (uploadError) {
+        console.error("Upload error:", uploadError.message);
+        return;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from("project-images")
+        .getPublicUrl(filePath);
+
+        imageUrl = urlData.publicUrl;
+    }
+
     const { data, error } = await supabase
       .from("projects")
       .insert({
         title: projectName.trim(),
         client_id: clientId.trim(),
         user_id: user?.id,
+        image_url: imageUrl,
       })
       .select()
       .single();
@@ -61,7 +84,9 @@ const AddProjectForm = () => {
 
     setProjectName("");
     setClientId("");
+    setImageFile(null);
     toggleProjectFormUI();
+
     router.push("/projects");
   };
 
@@ -97,6 +122,12 @@ const AddProjectForm = () => {
                 </option>
               ))}
             </select>
+            <input
+              type="file"
+              accept="image/*"
+              className="bg-[#1A1B20] border border-violet-500/30 text-white p-2 rounded w-full cursor-pointer"
+              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+            />
             <button className="bg-violet-500 text-white px-4 py-2 rounded shadow-[0_0_15px_rgba(139,92,246,0.5)] cursor-pointer hover:bg-[#7C3AED] transition-all font-bold">
               Submit
             </button>
