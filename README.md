@@ -23,9 +23,34 @@ Authentication — Secure sign up / login with Supabase Auth, protected routes v
 ### Task Progress
 ![Task Progress](public/screenshots/project-progress.png)
 
-Tech Stack LayerTechnologyFrameworkNext.js 14 (App Router)LanguageTypeScriptStylingTailwind CSSBackend & DatabaseSupabase (PostgreSQL)AuthenticationSupabase AuthState ManagementZustandSecurityRow Level Security (RLS) on all tables
+## Tech Stack
 
-Architecture src/ ├── app/ # Next.js App Router pages │ ├── login/ │ ├── register/ │ ├── projects/[id]/ │ ├── clients/ │ └── notes/ ├── components/ # Reusable UI components ├── hooks/ # Custom hooks (useClients, useProjects, useTasks, useNotes) ├── store/ # Zustand stores (ui, clients, projects, notes, tasks) └── lib/ └── supabase/ # Supabase client, server, and middleware config
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Backend & Database:** Supabase (PostgreSQL)
+- **Authentication:** Supabase Auth
+- **State Management:** Zustand
+- **Security:** Row Level Security (RLS) on all tables
+
+---
+
+## Architecture
+
+```
+src/
+├── app/                  # Next.js App Router pages
+│   ├── login/
+│   ├── register/
+│   ├── projects/[id]/
+│   ├── clients/
+│   └── notes/
+├── components/           # Reusable UI components
+├── hooks/                # Custom hooks (useClients, useProjects, useTasks, useNotes)
+├── store/                # Zustand stores (ui, clients, projects, notes, tasks)
+└── lib/
+    └── supabase/         # Supabase client, server, and middleware config
+```
 
 Database Schema
 
