@@ -6,6 +6,23 @@ Features
 
 Authentication — Secure sign up / login with Supabase Auth, protected routes via Next.js middleware Client Management — Add, view, and delete clients Project Management — Create projects linked to clients, with an auto-generated task pipeline (15 tasks across Figma, Webflow, and SEO phases) Task Progress Tracking — Step-by-step task completion with a visual progress bar per project Notes — Create notes linked to clients or projects Responsive UI — Mobile-friendly layout with hamburger navigation
 
+## Screenshots
+
+### Login
+![Login](public/screenshots/login.png)
+
+### Dashboard
+![Dashboard](public/screenshots/dashboard.png)
+
+### Projects
+![Projects](public/screenshots/projects.png)
+
+### Project Detail
+![Project Detail](public/screenshots/project-detail.png)
+
+### Task Progress
+![Task Progress](public/screenshots/project-progress.png)
+
 Tech Stack LayerTechnologyFrameworkNext.js 14 (App Router)LanguageTypeScriptStylingTailwind CSSBackend & DatabaseSupabase (PostgreSQL)AuthenticationSupabase AuthState ManagementZustandSecurityRow Level Security (RLS) on all tables
 
 Architecture src/ ├── app/ # Next.js App Router pages │ ├── login/ │ ├── register/ │ ├── projects/[id]/ │ ├── clients/ │ └── notes/ ├── components/ # Reusable UI components ├── hooks/ # Custom hooks (useClients, useProjects, useTasks, useNotes) ├── store/ # Zustand stores (ui, clients, projects, notes, tasks) └── lib/ └── supabase/ # Supabase client, server, and middleware config
