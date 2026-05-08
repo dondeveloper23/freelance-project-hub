@@ -21,6 +21,7 @@ const Register = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (data: FormData) => {
     if (data.password !== data.confirmPassword) {
@@ -44,6 +45,7 @@ const Register = () => {
     if (error) {
       console.error("Error signing up:", error.message);
       setIsLoading(false);
+      setErrorMessage(error.message);
       return;
     }
     if (!authData.user) return;
@@ -145,6 +147,9 @@ const Register = () => {
             <p className="text-green-500 text-sm text-center">
               {successMessage}
             </p>
+          )}
+          {errorMessage && (
+            <p className="text-red-500 text-sm text-center">{errorMessage}</p>
           )}
           <button
             className="w-full bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-semibold py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
