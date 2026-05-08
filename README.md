@@ -1,6 +1,6 @@
 Freelance Project Hub A full-stack SaaS application for freelancers to manage projects, clients, and notes — all in one place.
 
-🚀 Live Demo: Coming soon
+🚀 Live Demo: https://freelance-project-hub-rms3.vercel.app/login
 
 Features
 
