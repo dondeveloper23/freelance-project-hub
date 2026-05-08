@@ -12,6 +12,7 @@ const router = useRouter();
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState<string | null>(null);
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -24,6 +25,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   if (error) {
     console.error("Error signing in:", error.message);
     setIsLoading(false);
+    setError(error.message);
     return
   }
 
@@ -66,6 +68,7 @@ return (
         >
           {isLoading ? "Please wait..." : "Login"}
         </button>
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </form>
 
       <p className="text-[#6B7280] text-sm text-center mt-6">
